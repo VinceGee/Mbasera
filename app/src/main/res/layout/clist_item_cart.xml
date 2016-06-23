@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/cLinearLayoutItem"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <com.android.volley.toolbox.NetworkImageView
+        android:id="@+id/cImageViewItem"
+        android:layout_width="100sp"
+        android:layout_height="100sp"
+        android:layout_alignParentLeft="true"
+        android:layout_margin="8dp"
+        android:scaleType="fitCenter"/>
+
+    <TextView
+        android:id="@+id/cTextViewItem"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_margin="5dip"
+        android:layout_toEndOf="@+id/cImageViewItem"
+        android:layout_toRightOf="@+id/cImageViewItem"
+        android:padding="5dp"
+        android:text="Book Title"
+        android:textColor="@color/lbl_product_name"
+        android:textSize="20sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/ctextViewQuantity"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/cTextViewItem"
+        android:layout_toEndOf="@+id/cImageViewItem"
+        android:layout_toRightOf="@+id/cImageViewItem"
+        android:layout_margin="5dip"
+        android:padding="5dp"
+        android:text="Quantity:"
+        android:textColor="#000000"
+        android:textSize="16sp"
+        android:textStyle="italic"
+        />
+
+</RelativeLayout>

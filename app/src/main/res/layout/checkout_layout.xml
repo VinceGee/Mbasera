@@ -1,0 +1,80 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#fff"
+    >
+
+    <ScrollView
+        android:id="@+id/scroller"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="52.5dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:paddingTop="11dp"
+            android:paddingBottom="11dp"
+            >
+
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal"
+    android:padding="16dp"
+    android:background="#fbfaff"
+    >
+
+
+
+    <com.vince.empire.mbasera.utilities.MyTextView
+        android:layout_weight="1"
+        android:id="@+id/checkOutTextTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="PAYMENT METHOD"
+        android:textSize="12dp"
+        android:textColor="#333333"
+        android:paddingTop="8dp"/>
+
+</LinearLayout>
+
+<HorizontalScrollView
+android:id="@+id/horizontalview"
+android:layout_width="match_parent"
+android:layout_height="wrap_content"
+
+android:background="#fbfaff"
+android:scrollbars="none"
+    >
+
+<LinearLayout
+    android:layout_width="wrap_content"
+    android:layout_height="100dp"
+    android:orientation="horizontal"
+    >
+
+    <include layout="@layout/payment1"/>
+    <include layout="@layout/payment2"/>
+    <include layout="@layout/payment4"/>
+    <include layout="@layout/payment3"/>
+</LinearLayout>
+</HorizontalScrollView>
+
+        </LinearLayout>
+
+
+</ScrollView>
+    <Button
+        android:id="@+id/btnCancel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:background="@null"
+        android:text="@string/cancel_button"
+        android:layout_marginTop="164dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true" />
+    </RelativeLayout>

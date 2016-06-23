@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingLeft="16dp"
+    android:paddingRight="16dp">
+
+    <TextView
+        android:id="@+id/cProName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:paddingRight="8dp"
+        android:text="SamSung Galaxy s6" />
+    <!--<Spinner
+        android:id="@+id/dates"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/name"
+        android:layout_alignParentLeft="true"
+        android:layout_toLeftOf="@+id/times" />-->
+    <com.android.volley.toolbox.NetworkImageView
+        android:id="@+id/cCartImage"
+        android:layout_width="80dp"
+        android:layout_height="50dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@id/cProName"
+        android:layout_margin="8dp"
+        android:layout_toLeftOf="@+id/cPrice"
+        android:layout_toStartOf="@+id/cPrice"
+        android:scaleType="fitCenter"/>
+
+    <!--    <TextView
+            android:id="@id/times_1"
+            android:layout_width="96dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/name"
+            android:layout_alignParentRight="true" />-->
+
+    <TextView
+        android:id="@id/cPrice"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_below="@id/cProName"
+        android:layout_margin="8dp"
+        android:text="$ 500.00" />
+    <!--<TextView
+        android:id="@+id/cQnty"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_below="@id/cPrice"
+        android:layout_margin="8dp"
+        android:text="1*10" />-->
+
+    <CheckBox
+        android:id="@+id/cCheckBox"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_below="@id/cPrice"
+        android:layout_margin="8dp" />
+
+
+</RelativeLayout>

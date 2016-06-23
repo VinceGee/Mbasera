@@ -1,0 +1,40 @@
+<resources>
+    <string name="app_name">Mbasera</string>
+    <string name="btn_link_to_register">Sign up for an account</string>
+    <string name="btn_link_to_login">Already registered? Take me to Login</string>
+    <string name="title_activity_main2">Main2Activity</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="action_settings">Settings</string>
+
+    <string name="flash_on">Flash [ON]</string>
+    <string name="flash_off">Flash [OFF]</string>
+    <string name="auto_focus_on">Auto Focus [ON]</string>
+    <string name="auto_focus_off">Auto Focus [OFF]</string>
+    <string name="formats">Formats</string>
+    <string name="choose_formats">Choose Formats</string>
+    <string name="select_camera">Select a Camera</string>
+    <string name="ok_button">OK</string>
+    <string name="cancel_button">Cancel</string>
+    <string name="search">Search</string>
+    <string name="refresh">Refresh</string>
+    <string name="logout">Logout</string>
+    <string name="cart">Cart</string>
+    <string name="add_to_cart">Add to cart</string>
+    <string name="sheet_item_pressed">Item pressed</string>
+
+    <string name="select_payment_method">Select Payment Method</string>
+    <string name="none">none</string>
+    <string name="ecoca_h">EcoCa$h</string>
+    <string name="paypal">PayPal</string>
+
+    <string name="dialog_default_title">Here\'s a message!</string>
+    <string name="dialog_ok">OK</string>
+    <string name="dialog_cancel">Cancel</string>
+    <string name="please_wait_facebooklogin">Please wait</string>
+    <string name="login_canceled_facebooklogin">Login has been cancelled</string>
+    <string name="login_failed_facebooklogin">Failed to connect. Please try again later</string>
+
+</resources>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical">
+
+   <!-- <include
+        android:id="@id/toolbar"
+        layout="@layout/toolbar_settings" />
+
+    <fragment
+        android:id="@+id/settings"
+        android:name="com.vhg.empire.vincegee.mbasera.settings.v7.SettingsActivity$SettingsFragment"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content" />-->
+</LinearLayout>

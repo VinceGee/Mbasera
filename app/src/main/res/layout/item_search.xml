@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:paddingBottom="10dp" >
+
+    <com.android.volley.toolbox.NetworkImageView
+        android:id="@+id/sImageViewItem"
+        android:layout_width="100sp"
+        android:layout_height="100sp"
+        android:layout_alignParentLeft="true"
+        android:layout_margin="8dp"
+        android:scaleType="fitCenter" >
+    </com.android.volley.toolbox.NetworkImageView>
+
+    <TextView
+        android:id="@+id/sTextViewItem"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@id/sImageViewItem"
+        android:padding="5dp"
+        android:textColor="@color/lbl_product_name"
+        android:textSize="16sp"
+        android:text="GOODS"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/sTextViewDesc"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/sTextViewItem"
+        android:layout_toRightOf="@id/sImageViewItem"
+        android:padding="5dp"
+        android:text="DESCRIPTION"
+        android:textColor="@color/lbl_product_description" />
+
+    <TextView
+        android:id="@+id/stextViewQuantity"
+        android:text="QUANTITY"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/sTextViewDesc"
+        android:layout_toRightOf="@id/sImageViewItem"
+        android:padding="5dp"
+        android:textColor="@color/lbl_product_description" />
+
+
+</RelativeLayout>
