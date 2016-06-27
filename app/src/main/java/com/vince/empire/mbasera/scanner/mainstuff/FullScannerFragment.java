@@ -69,10 +69,9 @@ public class FullScannerFragment extends Fragment implements MessageDialogFragme
     private static final String TAG_SUCCESS = "success";
     private static final String TAG_IDIOMS = "idioms";
     private static final String TAG_ID = "id";
-    // private static final String TAG_BARCODE = "";
+    private static final String TAG_BARCODE = "bcode";
     private static final String TAG_PNAME = "name";
     private static final String TAG_PDESC = "description";
-    ;
     private static final String TAG_CATEGORY = "category";
     private static final String TAG_PRICE = "price";
     private static final String TAG_IMAGE = "image";
@@ -292,9 +291,9 @@ public class FullScannerFragment extends Fragment implements MessageDialogFragme
         protected void onPreExecute() {
             super.onPreExecute();
             pDialog = new ProgressDialog(getActivity());
-            pDialog.setMessage("Loading products. Please wait...");
+            pDialog.setMessage("Searching for product. Please wait...");
             pDialog.setIndeterminate(false);
-            pDialog.setCancelable(false);
+            pDialog.setCancelable(true);
             pDialog.show();
             timerDelayRemoveDialog(20000, pDialog);
         }
@@ -349,7 +348,7 @@ public class FullScannerFragment extends Fragment implements MessageDialogFragme
 
                         // Storing each json item in variable
                         String id = c.getString(TAG_ID);
-                        //  String barcode = c.getString(TAG_BARCODE);
+                        String barcode = c.getString(TAG_BARCODE);
                         String name = c.getString(TAG_PNAME);
                         String desc = c.getString(TAG_PDESC);
                         //  String category = c.getString(TAG_CATEGORY);
@@ -360,7 +359,7 @@ public class FullScannerFragment extends Fragment implements MessageDialogFragme
 
 
                         //adding to list
-                        productsList.add(new Product(id, name, desc, image, price, sku));
+                        productsList.add(new Product(id, name, desc, image, price, sku,barcode));
 
 
                     }
@@ -381,7 +380,7 @@ public class FullScannerFragment extends Fragment implements MessageDialogFragme
         /**
          * After completing background task Dismiss the progress dialog
          **/
-        protected void onPostExecute(String file_url) {
+        protected void onPostExecute(JSONObject jsonObject) {
             // dismiss the dialog after getting the related idioms
             pDialog.dismiss();
             // updating UI from Background Thread
@@ -398,7 +397,7 @@ public class FullScannerFragment extends Fragment implements MessageDialogFragme
                         for (int i = 0; i < productsList.size(); i++) {
 
                             catalogueProductsInCart.add(new Product(productsList.get(i).getId(), productsList.get(i).getName(), productsList.get(i).getDescription(), productsList.get(i).getImage(),
-                                    productsList.get(i).getPrice(), productsList.get(i).getSku()));
+                                    productsList.get(i).getPrice(), productsList.get(i).getSku(), productsList.get(i).getBcode()));
                            /* addProductCatalog(productsList.get(i).getId(), productsList.get(i).getName(), productsList.get(i).getDescription(), productsList.get(i).getImage(),
                                     productsList.get(i).getPrice(), productsList.get(i).getSku());*/
                         }
@@ -421,12 +420,11 @@ public class FullScannerFragment extends Fragment implements MessageDialogFragme
 
         }
 
-        public void addProductCatalog(String id, String title, String desc, String image, BigDecimal price, String sku) {
+        public void addProductCatalog(String id, String title, String desc, String image, BigDecimal price, String sku, String bcode) {
             if (ShoppingCartHelper.catalog == null) {
                 ShoppingCartHelper.catalog = new Vector<Product>();
 
-                ShoppingCartHelper.catalog.add(new Product(id, title, desc, image,
-                        price, sku));
+                ShoppingCartHelper.catalog.add(new Product(id, title, desc, image, price, sku,bcode));
                 int nothing;
 
             }

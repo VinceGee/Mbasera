@@ -360,15 +360,14 @@ public class MainActivityYeDatabase extends AppCompatActivity {
 
                         String id = product.getString("id");
                         String name = product.getString("name");
-                        String description = product
-                                .getString("description");
+                        String description = product.getString("description");
                         String image = product.getString("image");
-                        BigDecimal price = new BigDecimal(product
-                                .getString("price"));
+                        BigDecimal price = new BigDecimal(product.getString("price"));
                         String sku = product.getString("sku");
+                        String barcode = product.getString("bcode");
 
                         Product p = new Product(id, name, description,
-                                image, price, sku);
+                                image, price, sku,barcode);
 
                         productsList.add(p);
                     }

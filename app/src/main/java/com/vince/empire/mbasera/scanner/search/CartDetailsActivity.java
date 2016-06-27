@@ -147,7 +147,7 @@ public class CartDetailsActivity extends Activity {
               /*  Product productInCrt = new Product(selectedProduct.getId(),selectedProduct.getName(),selectedProduct.getImage()
                         ,selectedProduct.getDescription(),selectedProduct.getPrice(),productIndex,mTotalQuantity);*/
                 Product productInCrt = new Product(selectedProduct.getId(), selectedProduct.getName(), selectedProduct.getDescription()
-                        , selectedProduct.getImage(), selectedProduct.getPrice(), selectedProduct.getSku(),mTotalQuantity);
+                        , selectedProduct.getImage(), selectedProduct.getPrice(), selectedProduct.getSku(),selectedProduct.getBcode(),mTotalQuantity);
 
 
                 CartListAdapter.getProductList().remove(productIndex);
@@ -198,7 +198,7 @@ public class CartDetailsActivity extends Activity {
               /*  Product productInCrt = new Product(selectedProduct.getId(),selectedProduct.getName(),selectedProduct.getImage()
                         ,selectedProduct.getDescription(),selectedProduct.getPrice(),productIndex,mTotalQuantity);*/
                 Product productInCrt = new Product(selectedProduct.getId(), selectedProduct.getName(), selectedProduct.getDescription()
-                        , selectedProduct.getImage(), selectedProduct.getPrice(), selectedProduct.getSku(),mTotalQuantity);
+                        , selectedProduct.getImage(), selectedProduct.getPrice(), selectedProduct.getSku(),selectedProduct.getBcode(),mTotalQuantity);
 
                 if(obtainedQuantity!=mTotalQuantity){
                     //ShoppingCartHelper.removeProduct(selectedProduct);

@@ -8,7 +8,7 @@ import com.paypal.android.sdk.payments.PayPalPayment;
  */
 public class AppConfig {
 
-    public static final String BASE_URL = "http://192.168.88.53/mbasera";
+    public static final String BASE_URL = "http://10.0.0.3/mbasera";
     // Server user login url
     public static String URL_LOGIN = BASE_URL + "/login.php";
 

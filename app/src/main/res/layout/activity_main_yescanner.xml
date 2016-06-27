@@ -21,18 +21,18 @@
 
                 <!-- Toolbar -->
                 <android.support.v7.widget.Toolbar
-                    android:id="@+id/toolbar_redb"
+                    android:id="@+id/toolbar_rescanner"
                     style="@style/Widget.MaterialSheetFab.ToolBar" />
 
                 <!-- Tabs -->
                 <android.support.design.widget.TabLayout
-                    android:id="@+id/tabs"
+                    android:id="@+id/tabs_yescanner"
                     style="@style/Widget.MaterialSheetFab.TabLayout" />
             </android.support.design.widget.AppBarLayout>
 
             <!-- View pager -->
             <android.support.v4.view.ViewPager
-                android:id="@+id/viewpager"
+                android:id="@+id/viewpager_yescanner"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_below="@+id/appbar"

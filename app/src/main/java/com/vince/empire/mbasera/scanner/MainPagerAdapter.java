@@ -32,12 +32,10 @@ public class MainPagerAdapter extends FragmentPagerAdapter {
         switch (position) {
             case SEARCH:
                // return FullScannerFragment.newInstance();
-                Search search = new Search();
-                return search;
+                return new Search();
             case CART:
                 //CartFragmentYeScanner fragment = new CartFragmentYeScanner();
-                ShoppingCartFragment cart = new ShoppingCartFragment();
-                return cart;
+                return new ShoppingCartFragment();
 
             default:
                 return null;

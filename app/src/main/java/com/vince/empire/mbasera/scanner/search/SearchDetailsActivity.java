@@ -139,7 +139,7 @@ public class SearchDetailsActivity extends Activity {
                 mTotalQuantity = quantity;
                 //add products to cart
                 Product productInCrt = new Product(selectedProduct.getId(), selectedProduct.getName(), selectedProduct.getDescription()
-                        , selectedProduct.getImage(), selectedProduct.getPrice(), selectedProduct.getSku(),mTotalQuantity);
+                        , selectedProduct.getImage(), selectedProduct.getPrice(), selectedProduct.getSku(),selectedProduct.getBcode(),mTotalQuantity);
 
                 for (int i = 0; i < productsInCart.size(); i++) {
                     //ShoppingCartHelper.removeProduct(selectedProduct);

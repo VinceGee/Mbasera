@@ -42,6 +42,7 @@ public class ListResult extends ListActivity {
     private static final String TAG_ID = "id";
     private static final String TAG_PNAME = "name";
     private static final String TAG_PDESC = "description";
+    private static final String TAG_BARCODE = "bcode";
     private static final String TAG_CATEGORY = "category";
     private static final String TAG_PRICE = "price";
     private static final String TAG_IMAGE = "image";
@@ -146,9 +147,10 @@ public class ListResult extends ListActivity {
                         String image = c.getString(TAG_IMAGE);
                         BigDecimal price = new BigDecimal(c.getString(TAG_PRICE));
                         String sku = c.getString(TAG_SKU);
+                        String barcode = c.getString(TAG_BARCODE);
 
                         //adding to list
-                        productsList.add(new Product(id, name, desc, image, price, sku));
+                        productsList.add(new Product(id, name, desc, image, price, sku,barcode));
 
 
                     }
@@ -186,7 +188,7 @@ public class ListResult extends ListActivity {
                         for (int i = 0; i < productsList.size(); i++) {
 
                             catalogueProductsInCart.add(new Product(productsList.get(i).getId(), productsList.get(i).getName(), productsList.get(i).getDescription(), productsList.get(i).getImage(),
-                                    productsList.get(i).getPrice(), productsList.get(i).getSku()));
+                                    productsList.get(i).getPrice(), productsList.get(i).getSku(),productsList.get(i).getBcode()));
                            /* addProductCatalog(productsList.get(i).getId(), productsList.get(i).getName(), productsList.get(i).getDescription(), productsList.get(i).getImage(),
                                     productsList.get(i).getPrice(), productsList.get(i).getSku());*/
                         }
@@ -209,12 +211,11 @@ public class ListResult extends ListActivity {
 
         }
 
-        public void addProductCatalog(String id, String title, String desc, String image, BigDecimal price, String sku) {
+        public void addProductCatalog(String id, String title, String desc, String image, BigDecimal price, String sku, String bcode) {
             if (ShoppingCartHelper.catalog == null) {
                 ShoppingCartHelper.catalog = new Vector<Product>();
 
-                ShoppingCartHelper.catalog.add(new Product(id, title, desc, image,
-                        price, sku));
+                ShoppingCartHelper.catalog.add(new Product(id, title, desc, image,price, sku, bcode));
                 int nothing;
 
             }

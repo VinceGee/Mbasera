@@ -6,7 +6,7 @@ import java.math.BigDecimal;
  * Created by VinceGee on 06/09/2016.
  */
 public class Product {
-    private String id, name, description, image, sku;
+    private String id, name, description, image, sku, bcode;
     private BigDecimal price;
     private int quantity;
     public boolean selected;
@@ -16,13 +16,14 @@ public class Product {
     }
 
     public Product(String id, String name, String description, String image,
-                   BigDecimal price, String sku) {
+                   BigDecimal price, String sku, String bcode) {
         this.id = id;
         this.name = name;
         this.description = description;
         this.image = image;
         this.price = price;
         this.sku = sku;
+        this.bcode = bcode;
     }
 
     public int getQuantity() {
@@ -34,13 +35,14 @@ public class Product {
     }
 
     public Product(String id, String name, String description, String image,
-                   BigDecimal price, String sku, int quantity) {
+                   BigDecimal price, String sku,String bcode, int quantity) {
         this.id = id;
         this.name = name;
         this.description = description;
         this.image = image;
         this.price = price;
         this.sku = sku;
+        this.bcode = bcode;
         this.quantity = quantity;
     }
     public String getId() {
@@ -85,6 +87,14 @@ public class Product {
 
     public String getSku() {
         return sku;
+    }
+
+    public String getBcode() {
+        return bcode;
+    }
+
+    public void setBcode(String bcode) {
+        this.bcode = bcode;
     }
 
     public void setSku(String sku) {
