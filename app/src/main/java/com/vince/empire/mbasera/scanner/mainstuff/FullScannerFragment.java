@@ -64,7 +64,7 @@ public class FullScannerFragment extends Fragment implements MessageDialogFragme
     private boolean mAutoFocus;
     private ArrayList<Integer> mSelectedIndices;
     private int mCameraId = -1;
-    private RecyclerView mRecyclerView;
+
     // JSON Node names
     private static final String TAG_SUCCESS = "success";
     private static final String TAG_IDIOMS = "idioms";
@@ -78,8 +78,7 @@ public class FullScannerFragment extends Fragment implements MessageDialogFragme
     private static final String TAG_SKU = "sku";
     //search key value
     public String searchkey;
-    // Progress Dialog
-    int pple;
+
     // Creating JSON Parser object
     JSONParser jParser = new JSONParser();
     ArrayList<HashMap<String, String>> idiomsList;
