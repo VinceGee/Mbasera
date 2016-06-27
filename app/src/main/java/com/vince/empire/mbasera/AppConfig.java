@@ -29,4 +29,6 @@ public class AppConfig {
     public static final String PAYPAL_ENVIRONMENT = PayPalConfiguration.ENVIRONMENT_SANDBOX;
     public static final String PAYMENT_INTENT = PayPalPayment.PAYMENT_INTENT_SALE;
     public static final String DEFAULT_CURRENCY = "USD";
+    public static int CARTITEMSQUANTITY = 0;
+    public static double CARTITEMSPRICE = 0.00;
 }

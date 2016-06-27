@@ -11,6 +11,7 @@ import android.widget.Toast;
 
 import com.android.volley.toolbox.ImageLoader;
 import com.android.volley.toolbox.NetworkImageView;
+import com.vince.empire.mbasera.AppConfig;
 import com.vince.empire.mbasera.AppController;
 import com.vince.empire.mbasera.R;
 
@@ -105,8 +106,7 @@ public class CartDetailsActivity extends Activity {
 
         // Update the current quantity in the cart
         TextView textViewCurrentQuantity = (TextView) findViewById(R.id.ctextViewCurrentlyInCart);
-        textViewCurrentQuantity.setText("Currently in Cart: "
-                + obtainedQuantity);
+        textViewCurrentQuantity.setText("Currently in Cart: " + obtainedQuantity);
 
 
         // Save a reference to the quantity edit text
@@ -148,6 +148,13 @@ public class CartDetailsActivity extends Activity {
                         ,selectedProduct.getDescription(),selectedProduct.getPrice(),productIndex,mTotalQuantity);*/
                 Product productInCrt = new Product(selectedProduct.getId(), selectedProduct.getName(), selectedProduct.getDescription()
                         , selectedProduct.getImage(), selectedProduct.getPrice(), selectedProduct.getSku(),selectedProduct.getBcode(),mTotalQuantity);
+
+                for (int i = 0; i < productsInCart.size(); i++) {
+
+
+                    AppConfig.CARTITEMSPRICE += productsInCart.get(i).getPrice().doubleValue();
+
+                }
 
 
                 CartListAdapter.getProductList().remove(productIndex);
@@ -206,6 +213,9 @@ public class CartDetailsActivity extends Activity {
                     CartListAdapter.getProductList().add(productInCrt);
 
                 }
+                //editing cart quantity
+                AppConfig.CARTITEMSQUANTITY = mTotalQuantity;
+
                 // productsInCart.add(productInCrt);
                 ((BaseAdapter) ShoppingCartFragment.mListViewCatalog.getAdapter()).notifyDataSetChanged();
                 // Log.e("SHOW product szie",productsInCart.size()+"");

@@ -12,6 +12,7 @@ import android.widget.Toast;
 
 import com.android.volley.toolbox.ImageLoader;
 import com.android.volley.toolbox.NetworkImageView;
+import com.vince.empire.mbasera.AppConfig;
 import com.vince.empire.mbasera.AppController;
 import com.vince.empire.mbasera.R;
 import com.vince.empire.mbasera.database.helper.Product;
@@ -137,9 +138,13 @@ public class SearchDetailsActivity extends Activity {
                 // If we make it here, a valid quantity was entered
                 ShoppingCartHelper.setQuantity(selectedProduct, quantity);
                 mTotalQuantity = quantity;
+                //for incrementing cart quantity
+                AppConfig.CARTITEMSQUANTITY = mTotalQuantity;
+
                 //add products to cart
                 Product productInCrt = new Product(selectedProduct.getId(), selectedProduct.getName(), selectedProduct.getDescription()
                         , selectedProduct.getImage(), selectedProduct.getPrice(), selectedProduct.getSku(),selectedProduct.getBcode(),mTotalQuantity);
+
 
                 for (int i = 0; i < productsInCart.size(); i++) {
                     //ShoppingCartHelper.removeProduct(selectedProduct);
@@ -148,6 +153,8 @@ public class SearchDetailsActivity extends Activity {
                         productsInCart.remove(i);
                         // ProductAdapter.getProductList().add(productInCrt);
                     }
+
+                    AppConfig.CARTITEMSPRICE += productsInCart.get(i).getPrice().doubleValue();
 
                 }
 
