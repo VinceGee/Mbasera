@@ -11,4 +11,7 @@
     <dimen name="common_circle_width">3sp</dimen>
     <dimen name="progress_circle_radius">34sp</dimen>
     <dimen name="toolbar_elevation">4dp</dimen>
+
+    <dimen name="search_icon_padding">12dp</dimen>
+    <dimen name="search_view_text_padding">65dp</dimen>
 </resources>

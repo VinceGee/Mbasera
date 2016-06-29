@@ -294,7 +294,7 @@ public class FullScannerFragment extends Fragment implements MessageDialogFragme
             pDialog.setIndeterminate(false);
             pDialog.setCancelable(true);
             pDialog.show();
-            timerDelayRemoveDialog(20000, pDialog);
+            //timerDelayRemoveDialog(20000, pDialog);
         }
 
         public void timerDelayRemoveDialog(long time, final ProgressDialog d) {
@@ -326,7 +326,7 @@ public class FullScannerFragment extends Fragment implements MessageDialogFragme
                 // Check your log cat for JSON response
                 Log.e("JSON result", json.toString());
 
-                return json;
+                //return json;
             }
 
             // Check your log cat for JSON response
@@ -367,7 +367,7 @@ public class FullScannerFragment extends Fragment implements MessageDialogFragme
                     //do something
                 }
             } catch (JSONException e) {
-                Toast.makeText(getActivity(), "Network problem. Try again later.", Toast.LENGTH_LONG);
+                //Toast.makeText(getActivity(), "Network problem. Try again later.", Toast.LENGTH_LONG);
 
                 Log.e("JSONException", e.getMessage());
             }

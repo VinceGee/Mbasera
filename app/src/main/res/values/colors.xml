@@ -40,4 +40,6 @@
     <integer name="viewfinder_border_length">60</integer>
     <integer name="viewfinder_border_width">4</integer>
     <color name="text_black_87">#de000000</color>
+
+    <color name="search_layover_bg">#80000000</color>
 </resources>

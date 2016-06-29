@@ -22,7 +22,19 @@
                 <!-- Toolbar -->
                 <android.support.v7.widget.Toolbar
                     android:id="@+id/toolbar_redb"
-                    style="@style/Widget.MaterialSheetFab.ToolBar" />
+                    style="@style/Widget.MaterialSheetFab.ToolBar"
+                    android:layout_width="match_parent"
+                    android:layout_height="?attr/actionBarSize"
+                    android:background="@android:color/holo_blue_dark"
+                    android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+                    app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+                    />
+
+                <com.vince.empire.mbasera.utilities.MaterialSearchView
+                    android:id="@+id/search_view"
+                    style="@style/MaterialSearchViewStyle"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
 
             </android.support.design.widget.AppBarLayout>
 

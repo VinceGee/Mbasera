@@ -10,12 +10,21 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.text.TextUtils;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.BaseAdapter;
 import android.widget.Button;
+import android.widget.Filter;
+import android.widget.Filterable;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.DefaultRetryPolicy;
@@ -40,6 +49,7 @@ import com.vince.empire.mbasera.database.helper.Product;
 import com.vince.empire.mbasera.login.LoginActivity;
 import com.vince.empire.mbasera.login.SQLiteHandler;
 import com.vince.empire.mbasera.login.SessionManager;
+import com.vince.empire.mbasera.utilities.MaterialSearchView;
 import com.vince.empire.mbasera.utilities.dialogs.SweetAlertDialog;
 import com.vince.empire.mbasera.utilities.tabs.SlidingTabLayout;
 import com.vince.empire.mbasera.utilities.tabs.ViewPagerAdapter;
@@ -61,6 +71,7 @@ public class MainActivityYeDatabase extends AppCompatActivity {
 
     private static final String TAG = MainActivityYeDatabase.class.getSimpleName();
 
+
     private ListView listView;
     private Button btnCheckout;
 
@@ -69,8 +80,6 @@ public class MainActivityYeDatabase extends AppCompatActivity {
 
     // To store the products those are added to cart
     private List<PayPalItem> productsInCart = new ArrayList<PayPalItem>();
-
-    //private ProductListAdapter adapter;
 
     // Progress dialog
     private ProgressDialog pDialog;
@@ -82,13 +91,7 @@ public class MainActivityYeDatabase extends AppCompatActivity {
             .environment(AppConfig.PAYPAL_ENVIRONMENT).clientId(
                     AppConfig.PAYPAL_CLIENT_ID);
 
-    private ActionBarDrawerToggle drawerToggle;
-    private DrawerLayout drawerLayout;
-
-    private int statusBarColor;
-
     // Declaring Your View and Variables
-    Toolbar toolbar;
     ViewPager pager;
     ViewPagerAdapter mViewPagerAdapter;
     SlidingTabLayout tabs;
@@ -97,6 +100,7 @@ public class MainActivityYeDatabase extends AppCompatActivity {
 
     private SQLiteHandler db;
     private SessionManager session;
+    private MaterialSearchView searchView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -112,9 +116,7 @@ public class MainActivityYeDatabase extends AppCompatActivity {
         btnCheckout = (Button) findViewById(R.id.btnCheckout);
 
         productsList = new ArrayList<Product>();
-        // adapter = new ProductListAdapter(this, productsList, this);
 
-        //listView.setAdapter(adapter);
 
         pDialog = new ProgressDialog(this);
         pDialog.setCancelable(false);
@@ -146,9 +148,6 @@ public class MainActivityYeDatabase extends AppCompatActivity {
         // Setting the ViewPager For the SlidingTabsLayout
         tabs.setViewPager(pager);
 
-        ////////////////////LOGOUT////////////////////////////////////////
-
-
         // SqLite database handler
         db = new SQLiteHandler(getApplicationContext());
 
@@ -167,10 +166,140 @@ public class MainActivityYeDatabase extends AppCompatActivity {
         String name = user.get("name");
         String email = user.get("email");
 
-        //myname.setText(name);
 
-        //myemail.setText(email);
+        ///////////////////////////////SEARCH///////////////////////////////
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
 
+        searchView = (MaterialSearchView) findViewById(R.id.search_view);
+        searchView.setOnQueryTextListener(new MaterialSearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                return false;
+            }
+        });
+
+        searchView.setOnSearchViewListener(new MaterialSearchView.SearchViewListener() {
+            @Override
+            public void onSearchViewShown() {
+
+            }
+
+            @Override
+            public void onSearchViewClosed() {
+
+            }
+        });
+
+        searchView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+            }
+        });
+
+        SearchAdapter adapter = new SearchAdapter();
+        searchView.setAdapter(adapter);
+
+    }
+
+    ///////////////SEARCH ADAPTER////////////////////////////////
+    private class SearchAdapter extends BaseAdapter implements Filterable {
+
+        private ArrayList<String> data;
+
+        private String[] typeAheadData;
+
+        LayoutInflater inflater;
+
+        public SearchAdapter() {
+            //inflater = LayoutInflater.from(MainActivityYeDatabase.this);
+            //data = new ArrayList<String>();
+            //typeAheadData = getResources().getStringArray(R.array.state_array_full);
+        }
+
+
+        @Override
+        public Filter getFilter() {
+            Filter filter = new Filter() {
+                @Override
+                protected FilterResults performFiltering(CharSequence constraint) {
+                    FilterResults filterResults = new FilterResults();
+                    if (!TextUtils.isEmpty(constraint)) {
+                        // Retrieve the autocomplete results.
+                        List<String> searchData = new ArrayList<>();
+
+                        for (String str : typeAheadData) {
+                            if (str.toLowerCase().startsWith(constraint.toString().toLowerCase())) {
+                                searchData.add(str);
+                            }
+                        }
+
+                        // Assign the data to the FilterResults
+                        filterResults.values = searchData;
+                        filterResults.count = searchData.size();
+                    }
+                    return filterResults;
+                }
+
+                @Override
+                protected void publishResults(CharSequence constraint, FilterResults results) {
+                    if (results.values != null) {
+                        data = (ArrayList<String>) results.values;
+                        notifyDataSetChanged();
+                    }
+                }
+            };
+            return filter;
+        }
+
+        @Override
+        public int getCount() {
+            return data.size();
+        }
+
+        @Override
+        public Object getItem(int position) {
+            return data.get(position);
+        }
+
+        @Override
+        public long getItemId(int position) {
+            return position;
+        }
+
+        @Override
+        public View getView(int position, View convertView, ViewGroup parent) {
+            MyViewHolder mViewHolder;
+
+            if (convertView == null) {
+                convertView = inflater.inflate(android.R.layout.simple_list_item_1, parent, false);
+                mViewHolder = new MyViewHolder(convertView);
+                convertView.setTag(mViewHolder);
+            } else {
+                mViewHolder = (MyViewHolder) convertView.getTag();
+            }
+
+            String currentListData = (String) getItem(position);
+
+            mViewHolder.textView.setText(currentListData);
+
+            return convertView;
+        }
+
+
+        private class MyViewHolder {
+            TextView textView;
+
+            public MyViewHolder(View convertView) {
+                textView = (TextView) convertView.findViewById(android.R.id.text1);
+            }
+        }
     }
 
     /**
@@ -185,150 +314,6 @@ public class MainActivityYeDatabase extends AppCompatActivity {
         //getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
     }
-
-    /**
-     * Sets up the navigation drawer.
-     */
-    /*private void setupDrawer() {
-        drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
-        drawerToggle = new ActionBarDrawerToggle(this, drawerLayout, R.string.opendrawer,
-                R.string.closedrawer);
-        drawerLayout.setDrawerListener(drawerToggle);
-    }*/
-
-    /**
-     * Sets up the tabs.
-     */
-    /*private void setupTabs() {
-        // Setup view pager
-        ViewPager viewpager = (ViewPager) findViewById(R.id.viewpager);
-        viewpager.setAdapter(new MainPagerAdapter(this, getSupportFragmentManager()));
-        viewpager.setOffscreenPageLimit(MainPagerAdapter.NUM_ITEMS);
-        updatePage(viewpager.getCurrentItem());
-
-        // Setup tab layout
-        TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
-        tabLayout.setupWithViewPager(viewpager);
-        viewpager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
-            @Override
-            public void onPageScrolled(int i, float v, int i1) {
-            }
-
-            @Override
-            public void onPageSelected(int i) {
-                updatePage(i);
-            }
-
-            @Override
-            public void onPageScrollStateChanged(int i) {
-            }
-        });
-    }*/
-
-    /**
-     * Sets up the Floating action button.
-     */
-    /*private void setupFab() {
-
-        Fab fab = (Fab) findViewById(R.id.fab);
-        View sheetView = findViewById(R.id.fab_sheet);
-        View overlay = findViewById(R.id.overlay);
-        int sheetColor = getResources().getColor(R.color.background_card);
-        int fabColor = getResources().getColor(R.color.theme_accent);
-
-        // Create material sheet FAB
-        materialSheetFab = new MaterialSheetFab<>(fab, sheetView, overlay, sheetColor, fabColor);
-
-        // Set material sheet event listener
-        materialSheetFab.setEventListener(new MaterialSheetFabEventListener() {
-            @Override
-            public void onShowSheet() {
-                // Save current status bar color
-                statusBarColor = getStatusBarColor();
-                // Set darker status bar color to match the dim overlay
-                setStatusBarColor(getResources().getColor(R.color.theme_primary_dark2));
-            }
-
-            @Override
-            public void onHideSheet() {
-                // Restore status bar color
-                setStatusBarColor(statusBarColor);
-            }
-        });
-
-        *//*//* Set material sheet item click listeners
-        findViewById(R.id.fab_sheet_item_recording).setOnClickListener(this);
-        findViewById(R.id.fab_sheet_item_reminder).setOnClickListener(this);
-        findViewById(R.id.fab_sheet_item_photo).setOnClickListener(this);
-        findViewById(R.id.fab_sheet_item_note).setOnClickListener(this);
-   *//* }*/
-
-    /**
-     * Called when the selected page changes.
-     *
-     * @param selectedPage selected page
-     */
-    /*private void updatePage(int selectedPage) {
-        updateFab(selectedPage);
-        updateSnackbar(selectedPage);
-    }*/
-
-    /**
-     * Updates the FAB based on the selected page
-     *
-     * @param selectedPage selected page
-     */
-   /* private void updateFab(int selectedPage) {
-        switch (selectedPage) {
-            case MainPagerAdapter.SCANNER:
-                materialSheetFab.showFab();
-                break;
-            case MainPagerAdapter.CART:
-                materialSheetFab.showFab(0,
-                        -getResources().getDimensionPixelSize(R.dimen.snackbar_height));
-                break;
-            case MainPagerAdapter.PAY:
-            default:
-                materialSheetFab.hideSheetThenFab();
-                break;
-        }
-    }*/
-
-    /**
-     * Updates the snackbar based on the selected page
-     *
-     * @param selectedPage selected page
-     */
-    /*private void updateSnackbar(int selectedPage) {
-        View snackbar = findViewById(R.id.snackbar);
-        switch (selectedPage) {
-            case MainPagerAdapter.CART:
-                snackbar.setVisibility(View.VISIBLE);
-                break;
-            case MainPagerAdapter.SCANNER:
-            case MainPagerAdapter.PAY:
-            default:
-                snackbar.setVisibility(View.GONE);
-                break;
-        }
-    }*/
-
-    /**
-     * Toggles opening/closing the drawer.
-     *//*
-    private void toggleDrawer() {
-        if (drawerLayout.isDrawerVisible(GravityCompat.START)) {
-            drawerLayout.closeDrawer(GravityCompat.START);
-        } else {
-            drawerLayout.openDrawer(GravityCompat.START);
-        }
-    }
-*/
-   /* @Override
-    public void onClick(View v) {
-        Toast.makeText(this, R.string.sheet_item_pressed, Toast.LENGTH_SHORT).show();
-        materialSheetFab.hideSheet();
-    }*/
 //////////////////////////////////////////////////////
     /**
      * Fetching the products from our server
@@ -355,8 +340,7 @@ public class MainActivityYeDatabase extends AppCompatActivity {
                     // them in array list
                     for (int i = 0; i < products.length(); i++) {
 
-                        JSONObject product = (JSONObject) products
-                                .get(i);
+                        JSONObject product = (JSONObject) products.get(i);
 
                         String id = product.getString("id");
                         String name = product.getString("name");
@@ -366,8 +350,7 @@ public class MainActivityYeDatabase extends AppCompatActivity {
                         String sku = product.getString("sku");
                         String barcode = product.getString("bcode");
 
-                        Product p = new Product(id, name, description,
-                                image, price, sku,barcode);
+                        Product p = new Product(id, name, description,image, price, sku,barcode);
 
                         productsList.add(p);
                     }
@@ -391,8 +374,7 @@ public class MainActivityYeDatabase extends AppCompatActivity {
             @Override
             public void onErrorResponse(VolleyError error) {
                 VolleyLog.d(TAG, "Error: " + error.getMessage());
-                Toast.makeText(getApplicationContext(),
-                        error.getMessage(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), error.getMessage(), Toast.LENGTH_SHORT).show();
                 // hide the progress dialog
                 hidepDialog();
             }
@@ -425,8 +407,7 @@ public class MainActivityYeDatabase extends AppCompatActivity {
 
                     // user error boolean flag to check for errors
 
-                    Toast.makeText(getApplicationContext(), message,
-                            Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), message, Toast.LENGTH_SHORT).show();
 
                     if (!error) {
                         // empty the cart
