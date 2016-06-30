@@ -2,6 +2,10 @@ package com.vince.empire.mbasera;
 
 import com.paypal.android.sdk.payments.PayPalConfiguration;
 import com.paypal.android.sdk.payments.PayPalPayment;
+import com.vince.empire.mbasera.database.helper.Product;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by VinceGee on 05/30/2016.
@@ -31,4 +35,5 @@ public class AppConfig {
     public static final String DEFAULT_CURRENCY = "USD";
     public static int CARTITEMSQUANTITY = 0;
     public static double CARTITEMSPRICE = 0.00;
+   public static List<Product> catalogueProductsInCart = new ArrayList<Product>();
 }

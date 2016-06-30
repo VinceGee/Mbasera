@@ -18,7 +18,6 @@ import android.widget.TextView;
 import com.daimajia.slider.library.SliderTypes.BaseSliderView;
 import com.daimajia.slider.library.SliderTypes.TextSliderView;
 import com.vince.empire.mbasera.database.MainActivityYeDatabase;
-import com.vince.empire.mbasera.scanner.MainActivityYeScanner;
 import com.vince.empire.mbasera.R;
 import com.vince.empire.mbasera.SettingsAngu;
 import com.vince.empire.mbasera.login.LoginActivity;

@@ -2,6 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     package="com.vince.empire.mbasera">
+
     <uses-sdk tools:overrideLibrary="com.paypal.android.sdk.payments" />
 
     <!-- for card.io card scanning -->
@@ -29,11 +30,10 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
-        tools:replace="android:icon"
-        >
-        <activity android:name=".Welcome"
-            android:theme="@style/Theme.AppCompat.NoActionBar"
-            >
+        tools:replace="android:icon">
+        <activity
+            android:name=".Welcome"
+            android:theme="@style/Theme.AppCompat.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -46,19 +46,17 @@
         <activity
             android:name=".login.SignupActivity"
             android:theme="@style/AppTheme" />
-
-        <activity android:name=".mainmenu.MainActivityYemainmenu"
-            android:theme="@style/Theme.AppCompat.NoActionBar"/>
-
-        <activity android:name=".database.MainActivityYeDatabase"/>
-        <activity android:name=".scanner.MainActivityYeScanner"/>
-        <activity android:name=".SettingsAngu"/>
-        <activity android:name=".scanner.search.ListResult"/>
-        <activity android:name=".scanner.search.CatalogActivity"/>
-        <activity android:name=".scanner.search.CartDetailsActivity"/>
-        <activity android:name=".scanner.search.SearchDetailsActivity"/>
-        <activity android:name=".scanner.mainstuff.FullScannerActivity"/>
-
+        <activity
+            android:name=".mainmenu.MainActivityYemainmenu"
+            android:theme="@style/Theme.AppCompat.NoActionBar" />
+        <activity android:name=".database.MainActivityYeDatabase" />
+                <activity android:name=".SettingsAngu" />
+        <activity android:name=".scanner.search.ListResult" />
+        <activity android:name=".scanner.search.CatalogActivity" />
+        <activity android:name=".scanner.search.CartDetailsActivity" />
+        <activity android:name=".scanner.search.SearchDetailsActivity" />
+        <activity android:name=".scanner.mainstuff.FullScannerActivity" />
+        <activity android:name=".mainmenu.CartActivity"></activity>
     </application>
 
 </manifest>

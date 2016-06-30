@@ -30,9 +30,8 @@ import com.vince.empire.mbasera.AppConfig;
 import com.vince.empire.mbasera.AppController;
 import com.vince.empire.mbasera.R;
 import com.vince.empire.mbasera.database.helper.Product;
-import com.vince.empire.mbasera.scanner.MainActivityYeScanner;
+import com.vince.empire.mbasera.mainmenu.MainActivityYemainmenu;
 import com.vince.empire.mbasera.scanner.search.CatalogActivity;
-import com.vince.empire.mbasera.scanner.search.ShoppingCartFragment;
 import com.vince.empire.mbasera.scanner.search.ShoppingCartHelper;
 import com.vince.empire.mbasera.scanner.utilities.ZXingScannerView;
 import com.vince.empire.mbasera.utilities.JSONParser;
@@ -88,7 +87,7 @@ public class FullScannerFragment extends Fragment implements MessageDialogFragme
     private ProgressDialog pDialog;
     private List<Product> productsList = new ArrayList<Product>();
     //products in cart
-    public static List<Product> catalogueProductsInCart = new ArrayList<Product>();
+    //public static List<Product> catalogueProductsInCart = new ArrayList<Product>();
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle state) {
@@ -391,16 +390,16 @@ public class FullScannerFragment extends Fragment implements MessageDialogFragme
 
                     Log.e("List size", productsList.size() + "");
                     //  Log.e("Before intent",TAG_CATEGORY+TAG_PNAME+TAG_PDESC);
-                    catalogueProductsInCart.clear();
+                    AppConfig.catalogueProductsInCart.clear();
                     if(productsList.size()>0) {
                         for (int i = 0; i < productsList.size(); i++) {
 
-                            catalogueProductsInCart.add(new Product(productsList.get(i).getId(), productsList.get(i).getName(), productsList.get(i).getDescription(), productsList.get(i).getImage(),
+                            AppConfig.catalogueProductsInCart.add(new Product(productsList.get(i).getId(), productsList.get(i).getName(), productsList.get(i).getDescription(), productsList.get(i).getImage(),
                                     productsList.get(i).getPrice(), productsList.get(i).getSku(), productsList.get(i).getBcode()));
                            /* addProductCatalog(productsList.get(i).getId(), productsList.get(i).getName(), productsList.get(i).getDescription(), productsList.get(i).getImage(),
                                     productsList.get(i).getPrice(), productsList.get(i).getSku());*/
                         }
-                        ((BaseAdapter) ShoppingCartFragment.mListViewCatalog.getAdapter()).notifyDataSetChanged();
+                       // ((BaseAdapter) ShoppingCartFragment.mListViewCatalog.getAdapter()).notifyDataSetChanged();
                         Log.e("Before intent", "Start another intent");
 
                         Intent intent = new Intent(getActivity(), CatalogActivity.class);
@@ -410,7 +409,7 @@ public class FullScannerFragment extends Fragment implements MessageDialogFragme
                         Log.e("After intent", "Start another intent");
                     }else{
                         Toast.makeText(getActivity(),"No such product. Try another.",Toast.LENGTH_SHORT).show();
-                        Intent intent = new Intent(getActivity(), MainActivityYeScanner.class);
+                        Intent intent = new Intent(getActivity(), MainActivityYemainmenu.class);
                         startActivity(intent);
                         getActivity().finish();
                     }

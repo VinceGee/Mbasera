@@ -16,7 +16,7 @@ import com.vince.empire.mbasera.AppConfig;
 import com.vince.empire.mbasera.AppController;
 import com.vince.empire.mbasera.R;
 import com.vince.empire.mbasera.database.helper.Product;
-import com.vince.empire.mbasera.scanner.MainActivityYeScanner;
+import com.vince.empire.mbasera.mainmenu.CartActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -154,17 +154,17 @@ public class SearchDetailsActivity extends Activity {
                         // ProductAdapter.getProductList().add(productInCrt);
                     }
 
-                    AppConfig.CARTITEMSPRICE += productsInCart.get(i).getPrice().doubleValue();
+
 
                 }
 
-
+                AppConfig.CARTITEMSPRICE += productInCrt.getPrice().doubleValue()*mTotalQuantity;
                 productsInCart.add(productInCrt);
-                ((BaseAdapter) ShoppingCartFragment.mListViewCatalog.getAdapter()).notifyDataSetChanged();
+//             ((BaseAdapter) CartActivity.mListViewCatalog.getAdapter()).notifyDataSetChanged();
                 Log.e("SHOW product size", productsInCart.size() + "");
                 Toast.makeText(getApplication(), "Product added to CART", Toast.LENGTH_SHORT).show();
                 //  MainActivity main = new MainActivity();
-                Intent intent = new Intent(v.getContext(), MainActivityYeScanner.class);
+                Intent intent = new Intent(v.getContext(), CartActivity.class);
                 startActivity(intent);
                 // Close the activity
                 finish();

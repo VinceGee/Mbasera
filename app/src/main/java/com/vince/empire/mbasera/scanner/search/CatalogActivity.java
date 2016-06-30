@@ -8,8 +8,11 @@ import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
 
+import com.vince.empire.mbasera.AppConfig;
 import com.vince.empire.mbasera.R;
 import com.vince.empire.mbasera.database.helper.Product;
+import com.vince.empire.mbasera.mainmenu.CartActivity;
+import com.vince.empire.mbasera.scanner.mainstuff.FullScannerFragment;
 
 import java.util.List;
 
@@ -18,10 +21,12 @@ import java.util.List;
  */
 public class CatalogActivity extends Activity {
 
-    private List<Product> mProductList;
     public static ListView catalogList;
+    private List<Product> mProductList;
 
-    /** Called when the activity is first created. */
+    /**
+     * Called when the activity is first created.
+     */
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -29,17 +34,17 @@ public class CatalogActivity extends Activity {
 
         // Obtain a reference to the product catalog
         // mProductList = ShoppingCartHelper.getCatalog(getResources());
-        mProductList = ListResult.catalogueProductsInCart;
+        mProductList = AppConfig.catalogueProductsInCart;
         // Create the list
         catalogList = (ListView) findViewById(R.id.zicataloglist);
-        catalogList.setAdapter(new SearchAdapter(this,mProductList, getLayoutInflater(), false));
+        catalogList.setAdapter(new SearchAdapter(this, mProductList, getLayoutInflater(), false));
 
         catalogList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position,
                                     long id) {
-                Intent productDetailsIntent = new Intent(getBaseContext(),SearchDetailsActivity.class);
+                Intent productDetailsIntent = new Intent(getBaseContext(), SearchDetailsActivity.class);
                 productDetailsIntent.putExtra(ShoppingCartHelper.PRODUCT_INDEX, position);
                 startActivity(productDetailsIntent);
 
@@ -51,7 +56,8 @@ public class CatalogActivity extends Activity {
 
             @Override
             public void onClick(View v) {
-                finish();
+                Intent intent = new Intent(getApplicationContext(), CartActivity.class);
+                startActivity(intent);
             }
         });
 

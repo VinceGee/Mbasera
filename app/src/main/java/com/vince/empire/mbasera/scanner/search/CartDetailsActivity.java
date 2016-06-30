@@ -16,6 +16,7 @@ import com.vince.empire.mbasera.AppController;
 import com.vince.empire.mbasera.R;
 
 import com.vince.empire.mbasera.database.helper.Product;
+import com.vince.empire.mbasera.mainmenu.CartActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -149,18 +150,13 @@ public class CartDetailsActivity extends Activity {
                 Product productInCrt = new Product(selectedProduct.getId(), selectedProduct.getName(), selectedProduct.getDescription()
                         , selectedProduct.getImage(), selectedProduct.getPrice(), selectedProduct.getSku(),selectedProduct.getBcode(),mTotalQuantity);
 
-                for (int i = 0; i < productsInCart.size(); i++) {
 
-
-                    AppConfig.CARTITEMSPRICE += productsInCart.get(i).getPrice().doubleValue();
-
-                }
 
 
                 CartListAdapter.getProductList().remove(productIndex);
 
                 // productsInCart.add(productInCrt);
-                ((BaseAdapter) ShoppingCartFragment.mListViewCatalog.getAdapter()).notifyDataSetChanged();
+                ((BaseAdapter) CartActivity.mListViewCatalog.getAdapter()).notifyDataSetChanged();
                 // Log.e("SHOW product szie",productsInCart.size()+"");
 
                 // Close the activity
@@ -216,8 +212,15 @@ public class CartDetailsActivity extends Activity {
                 //editing cart quantity
                 AppConfig.CARTITEMSQUANTITY = mTotalQuantity;
 
+                //for (int i = 0; i < productsInCart.size(); i++) {
+
+
+                  //  AppConfig.CARTITEMSPRICE += productsInCart.get(i).getPrice().doubleValue();
+
+               // }
+
                 // productsInCart.add(productInCrt);
-                ((BaseAdapter) ShoppingCartFragment.mListViewCatalog.getAdapter()).notifyDataSetChanged();
+                ((BaseAdapter) CartActivity.mListViewCatalog.getAdapter()).notifyDataSetChanged();
                 // Log.e("SHOW product szie",productsInCart.size()+"");
 
                 // Close the activity
