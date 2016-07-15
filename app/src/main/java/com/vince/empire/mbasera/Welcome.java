@@ -7,7 +7,9 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.vince.empire.mbasera.login.LoginActivity;
+import com.vince.empire.mbasera.login.SessionManager;
 import com.vince.empire.mbasera.login.SignupActivity;
+import com.vince.empire.mbasera.mainmenu.MainActivityYemainmenu;
 
 /**
  * Created by VinceGee on 05/30/2016.
@@ -15,6 +17,7 @@ import com.vince.empire.mbasera.login.SignupActivity;
 public class Welcome extends AppCompatActivity {
     TextView signin;
     TextView signup;
+    private SessionManager session;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,17 +38,27 @@ public class Welcome extends AppCompatActivity {
         });
 
 
+        // Session manager
+        session = new SessionManager(getApplicationContext());
+        // Check if user is already logged in or not
+        if (session.isLoggedIn()) {
+            // User is already logged in. Take him to main activity
+            Intent intent = new Intent(Welcome.this, MainActivityYemainmenu.class);
+            startActivity(intent);
+            finish();
 
-        signin.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+        }else {
 
-                Intent it = new Intent(Welcome.this, LoginActivity.class);
-                startActivity(it);
+            signin.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+
+                    Intent it = new Intent(Welcome.this, LoginActivity.class);
+                    startActivity(it);
 
 
-            }
-        });
-
+                }
+            });
+        }
     }
 }
