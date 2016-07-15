@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/hiEdit"
+        android:icon="@drawable/rate"
+        app:showAsAction="ifRoom"
+        android:title="Compose"/>
+    <item
+        android:id="@+id/hiDelete"
+        android:orderInCategory="100"
+
+        android:icon="@drawable/rate"
+        app:showAsAction="ifRoom"
+        android:title="Delete"/>
+<!--    <item
+        android:id="@+id/hiSettings"
+        android:orderInCategory="100"
+        android:title="@string/action_settings"
+        app:showAsAction="never"/>
+    <item
+        android:id="@+id/hiLogout"
+        android:orderInCategory="100"
+        android:title="Logout"
+        app:showAsAction="never"/>-->
+</menu>

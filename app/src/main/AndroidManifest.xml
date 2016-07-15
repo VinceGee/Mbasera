@@ -49,14 +49,16 @@
         <activity
             android:name=".mainmenu.MainActivityYemainmenu"
             android:theme="@style/Theme.AppCompat.NoActionBar" />
-        <activity android:name=".database.MainActivityYeDatabase" />
-                <activity android:name=".SettingsAngu" />
+        <activity android:name=".SettingsAngu" />
         <activity android:name=".scanner.search.ListResult" />
         <activity android:name=".scanner.search.CatalogActivity" />
         <activity android:name=".scanner.search.CartDetailsActivity" />
         <activity android:name=".scanner.search.SearchDetailsActivity" />
         <activity android:name=".scanner.mainstuff.FullScannerActivity" />
-        <activity android:name=".mainmenu.CartActivity"></activity>
+        <activity android:name=".mainmenu.CartActivity"/>
+        <activity android:name=".menusearch.MenuSearchActivity"/>
+        <activity android:name=".navhistory.HistoryViewActivity"/>
+        <activity android:name=".navhistory.SaveResultListActivity"/>
     </application>
 
 </manifest>

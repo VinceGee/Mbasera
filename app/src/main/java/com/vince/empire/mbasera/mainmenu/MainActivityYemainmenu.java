@@ -17,12 +17,13 @@ import android.widget.TextView;
 
 import com.daimajia.slider.library.SliderTypes.BaseSliderView;
 import com.daimajia.slider.library.SliderTypes.TextSliderView;
-import com.vince.empire.mbasera.database.MainActivityYeDatabase;
 import com.vince.empire.mbasera.R;
 import com.vince.empire.mbasera.SettingsAngu;
 import com.vince.empire.mbasera.login.LoginActivity;
 import com.vince.empire.mbasera.login.SQLiteHandler;
 import com.vince.empire.mbasera.login.SessionManager;
+import com.vince.empire.mbasera.menusearch.MenuSearchActivity;
+import com.vince.empire.mbasera.navhistory.SaveResultListActivity;
 import com.vince.empire.mbasera.scanner.mainstuff.FullScannerActivity;
 
 import java.util.ArrayList;
@@ -117,11 +118,11 @@ public void onItemClick(AdapterView<?> parent, View view, int position, long id)
         startActivity(intent);
         break;
         case 1:
-        intent = new Intent(getApplicationContext(), MainActivityYeDatabase.class);
+        intent = new Intent(getApplicationContext(), MenuSearchActivity.class);
         startActivity(intent);
         break;
         case 2:
-        intent = new Intent(getApplicationContext(), SettingsAngu.class);
+        intent = new Intent(getApplicationContext(), SaveResultListActivity.class);
         startActivity(intent);
         break;
 default:

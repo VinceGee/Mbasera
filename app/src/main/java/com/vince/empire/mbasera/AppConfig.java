@@ -3,6 +3,7 @@ package com.vince.empire.mbasera;
 import com.paypal.android.sdk.payments.PayPalConfiguration;
 import com.paypal.android.sdk.payments.PayPalPayment;
 import com.vince.empire.mbasera.database.helper.Product;
+import com.vince.empire.mbasera.navhistory.adapter.model.Order;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -36,4 +37,5 @@ public class AppConfig {
     public static int CARTITEMSQUANTITY = 0;
     public static double CARTITEMSPRICE = 0.00;
    public static List<Product> catalogueProductsInCart = new ArrayList<Product>();
+    public static ArrayList<Order> productsOrderList = new ArrayList<>();
 }
