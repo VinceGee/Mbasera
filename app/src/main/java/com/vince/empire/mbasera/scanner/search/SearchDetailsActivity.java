@@ -7,6 +7,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.BaseAdapter;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -17,6 +18,7 @@ import com.vince.empire.mbasera.AppController;
 import com.vince.empire.mbasera.R;
 import com.vince.empire.mbasera.database.helper.Product;
 import com.vince.empire.mbasera.mainmenu.CartActivity;
+import com.vince.empire.mbasera.utilities.MyTextView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,11 +28,10 @@ import java.util.List;
  */
 public class SearchDetailsActivity extends Activity {
     public static int mTotalQuantity;
-    public static List<Product> productsInCart = new ArrayList<Product>();
 
     TextView mTextViewItemQuantity;
-    Button onButtonPlus;
-    Button onButtonMinus;
+    ImageView onButtonPlus;
+    ImageView onButtonMinus;
     ImageLoader imageLoader = AppController.getInstance().getImageLoader();
     private int itemQuantity = 0;
 
@@ -53,8 +54,8 @@ public class SearchDetailsActivity extends Activity {
         setContentView(R.layout.searchdetails);
 
         mTextViewItemQuantity = (TextView) findViewById(R.id.search_checkout_fragment_item_details_text_view_item_quantity);
-        onButtonPlus = (Button) findViewById(R.id.search_checkout_fragment_item_details_button_plus);
-        onButtonMinus = (Button) findViewById(R.id.search_checkout_fragment_item_details_button_minus);
+        onButtonPlus = (ImageView) findViewById(R.id.search_checkout_fragment_item_details_button_plus);
+        onButtonMinus = (ImageView) findViewById(R.id.search_checkout_fragment_item_details_button_minus);
 
         if (imageLoader == null)
             imageLoader = AppController.getInstance().getImageLoader();
@@ -107,7 +108,7 @@ public class SearchDetailsActivity extends Activity {
         // Save a reference to the quantity edit text
         // final EditText editTextQuantity = (EditText) findViewById(R.id.editTextQuantity);
 
-        Button addToCartButton = (Button) findViewById(R.id.searchButtonAddToCart);
+        MyTextView addToCartButton = (MyTextView) findViewById(R.id.searchButtonAddToCart);
         addToCartButton.setOnClickListener(new View.OnClickListener() {
 
             @Override
@@ -146,11 +147,11 @@ public class SearchDetailsActivity extends Activity {
                         , selectedProduct.getImage(), selectedProduct.getPrice(), selectedProduct.getSku(),selectedProduct.getBcode(),mTotalQuantity);
 
 
-                for (int i = 0; i < productsInCart.size(); i++) {
+                for (int i = 0; i < AppConfig.productsInCart.size(); i++) {
                     //ShoppingCartHelper.removeProduct(selectedProduct);
-                    if (productsInCart.get(i).getId().equalsIgnoreCase(selectedProduct.getId())) {
+                    if (AppConfig.productsInCart.get(i).getId().equalsIgnoreCase(selectedProduct.getId())) {
 
-                        productsInCart.remove(i);
+                        AppConfig.productsInCart.remove(i);
                         // ProductAdapter.getProductList().add(productInCrt);
                     }
 
@@ -159,9 +160,9 @@ public class SearchDetailsActivity extends Activity {
                 }
 
                 AppConfig.CARTITEMSPRICE += productInCrt.getPrice().doubleValue()*mTotalQuantity;
-                productsInCart.add(productInCrt);
+                AppConfig.productsInCart.add(productInCrt);
 //             ((BaseAdapter) CartActivity.mListViewCatalog.getAdapter()).notifyDataSetChanged();
-                Log.e("SHOW product size", productsInCart.size() + "");
+                Log.e("SHOW product size", AppConfig.productsInCart.size() + "");
                 Toast.makeText(getApplication(), "Product added to CART", Toast.LENGTH_SHORT).show();
                 //  MainActivity main = new MainActivity();
                 Intent intent = new Intent(v.getContext(), CartActivity.class);

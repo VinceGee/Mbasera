@@ -38,4 +38,6 @@ public class AppConfig {
     public static double CARTITEMSPRICE = 0.00;
    public static List<Product> catalogueProductsInCart = new ArrayList<Product>();
     public static ArrayList<Order> productsOrderList = new ArrayList<>();
+    //product for items in cart
+    public static List<Product> productsInCart = new ArrayList<Product>();
 }

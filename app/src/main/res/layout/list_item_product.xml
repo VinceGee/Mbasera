@@ -14,7 +14,7 @@
         android:scaleType="fitCenter" >
     </com.android.volley.toolbox.NetworkImageView>
 
-    <TextView
+    <com.vince.empire.mbasera.utilities.MyTextView
         android:id="@+id/productName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -24,7 +24,7 @@
         android:textSize="16dp"
         android:textStyle="bold" />
 
-    <TextView
+    <com.vince.empire.mbasera.utilities.MyTextView
         android:id="@+id/productDescription"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -33,7 +33,7 @@
         android:padding="5dp"
         android:textColor="@color/lbl_product_description" />
 
-    <TextView
+    <com.vince.empire.mbasera.utilities.MyTextView
         android:id="@+id/productPrice"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

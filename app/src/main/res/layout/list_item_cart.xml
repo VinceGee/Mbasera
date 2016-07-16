@@ -5,7 +5,7 @@
     android:paddingLeft="16dp"
     android:paddingRight="16dp">
 
-    <TextView
+    <com.vince.empire.mbasera.utilities.MyTextView
         android:id="@+id/cProName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -38,7 +38,7 @@
             android:layout_below="@id/name"
             android:layout_alignParentRight="true" />-->
 
-    <TextView
+    <com.vince.empire.mbasera.utilities.MyTextView
         android:id="@id/cPrice"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

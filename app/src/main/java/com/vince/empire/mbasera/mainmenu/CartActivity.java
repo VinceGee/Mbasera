@@ -78,7 +78,7 @@ public class CartActivity extends AppCompatActivity {
         mContinueShopping = (Button) findViewById(R.id.continueShopping);
 
 
-        mCartList = SearchDetailsActivity.productsInCart;
+        mCartList = AppConfig.productsInCart;
         Log.e("Check this size", "" + mCartList.size());
 
         // Make sure to clear the selections
@@ -144,7 +144,7 @@ public class CartActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                new SweetAlertDialog(getApplicationContext(), SweetAlertDialog.WARNING_TYPE)
+                new SweetAlertDialog(CartActivity.this, SweetAlertDialog.WARNING_TYPE)
                         .setCustomImage(R.mipmap.ic_launcher)
                         .setTitleText("Mbasera")
                         .setContentText("Submit Order?")
@@ -176,14 +176,13 @@ public class CartActivity extends AppCompatActivity {
                                 }
 
                                 launchPayPalPayment();
-
                                 sDialog.dismiss();
                             }
 
 
                         })
 
-                        .show();
+                       .show();
             }
 
         });
@@ -254,7 +253,7 @@ public class CartActivity extends AppCompatActivity {
 
         PayPalPayment thingsToBuy = prepareFinalCart();
 
-        Intent intent = new Intent(getApplicationContext(), PaymentActivity.class);
+        Intent intent = new Intent(CartActivity.this, PaymentActivity.class);
 
         intent.putExtra(PayPalService.EXTRA_PAYPAL_CONFIGURATION, paypalConfig);
 

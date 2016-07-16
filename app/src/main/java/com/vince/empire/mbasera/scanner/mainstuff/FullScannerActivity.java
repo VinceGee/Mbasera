@@ -55,4 +55,18 @@ public class FullScannerActivity extends AppCompatActivity {
       //  d = Double.valueOf(str);
         return  Double.valueOf(str);
     }
+
+    @Override
+    public void onBackPressed() {
+
+        int count = getFragmentManager().getBackStackEntryCount();
+
+        if (count == 0) {
+            super.onBackPressed();
+            //additional code
+        } else {
+            getFragmentManager().popBackStack();
+        }
+
+    }
 }

@@ -30,6 +30,7 @@ import com.vince.empire.mbasera.AppConfig;
 import com.vince.empire.mbasera.AppController;
 import com.vince.empire.mbasera.R;
 import com.vince.empire.mbasera.database.helper.Product;
+import com.vince.empire.mbasera.mainmenu.CartActivity;
 import com.vince.empire.mbasera.mainmenu.MainActivityYemainmenu;
 import com.vince.empire.mbasera.scanner.search.CatalogActivity;
 import com.vince.empire.mbasera.scanner.search.ShoppingCartHelper;
@@ -402,7 +403,7 @@ public class FullScannerFragment extends Fragment implements MessageDialogFragme
                        // ((BaseAdapter) ShoppingCartFragment.mListViewCatalog.getAdapter()).notifyDataSetChanged();
                         Log.e("Before intent", "Start another intent");
 
-                        Intent intent = new Intent(getActivity(), CatalogActivity.class);
+                        Intent intent = new Intent(getActivity(), CartActivity.class);
                         startActivity(intent);
                         getActivity().finish();
                         //  ((BaseAdapter) CatalogActivity.catalogList.getAdapter()).notifyDataSetChanged();
@@ -416,16 +417,6 @@ public class FullScannerFragment extends Fragment implements MessageDialogFragme
                 }
             });
 
-        }
-
-        public void addProductCatalog(String id, String title, String desc, String image, BigDecimal price, String sku, String bcode) {
-            if (ShoppingCartHelper.catalog == null) {
-                ShoppingCartHelper.catalog = new Vector<Product>();
-
-                ShoppingCartHelper.catalog.add(new Product(id, title, desc, image, price, sku,bcode));
-                int nothing;
-
-            }
         }
 
     }

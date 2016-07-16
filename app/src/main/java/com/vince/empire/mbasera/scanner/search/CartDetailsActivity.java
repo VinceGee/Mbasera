@@ -6,6 +6,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.BaseAdapter;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -17,6 +18,7 @@ import com.vince.empire.mbasera.R;
 
 import com.vince.empire.mbasera.database.helper.Product;
 import com.vince.empire.mbasera.mainmenu.CartActivity;
+import com.vince.empire.mbasera.utilities.MyTextView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -33,8 +35,8 @@ public class CartDetailsActivity extends Activity {
 
     //@Bind(R.id.checkout_fragment_item_details_text_view_item_quantity)
     TextView mTextViewItemQuantity;
-    Button onButtonPlus;
-    Button onButtonMinus;
+    ImageView onButtonPlus;
+    ImageView onButtonMinus;
     ImageLoader imageLoader = AppController.getInstance().getImageLoader();
 
     //@OnClick(R.id.checkout_fragment_item_details_button_plus)
@@ -56,8 +58,8 @@ public class CartDetailsActivity extends Activity {
         setContentView(R.layout.cartdetails);
 
         mTextViewItemQuantity = (TextView) findViewById(R.id.ccheckout_fragment_item_details_text_view_item_quantity);
-        onButtonPlus = (Button) findViewById(R.id.ccheckout_fragment_item_details_button_plus);
-        onButtonMinus = (Button) findViewById(R.id.ccheckout_fragment_item_details_button_minus);
+        onButtonPlus = (ImageView) findViewById(R.id.ccheckout_fragment_item_details_button_plus);
+        onButtonMinus = (ImageView) findViewById(R.id.ccheckout_fragment_item_details_button_minus);
 
         if (imageLoader == null)
             imageLoader = AppController.getInstance().getImageLoader();
@@ -106,15 +108,15 @@ public class CartDetailsActivity extends Activity {
         });
 
         // Update the current quantity in the cart
-        TextView textViewCurrentQuantity = (TextView) findViewById(R.id.ctextViewCurrentlyInCart);
-        textViewCurrentQuantity.setText("Currently in Cart: " + obtainedQuantity);
+        //TextView textViewCurrentQuantity = (TextView) findViewById(R.id.ctextViewCurrentlyInCart);
+        //textViewCurrentQuantity.setText("Currently in Cart: " + obtainedQuantity);
 
 
         // Save a reference to the quantity edit text
         // final EditText editTextQuantity = (EditText) findViewById(R.id.editTextQuantity);
 
-        Button addToCartButton = (Button) findViewById(R.id.cButtonAddToCart);
-        Button removeToCartButton = (Button) findViewById(R.id.cButtonRemoveToCart);
+        MyTextView addToCartButton = (MyTextView) findViewById(R.id.cButtonAddToCart);
+        MyTextView removeToCartButton = (MyTextView) findViewById(R.id.cButtonRemoveToCart);
         removeToCartButton.setOnClickListener(new View.OnClickListener() {
 
             @Override
