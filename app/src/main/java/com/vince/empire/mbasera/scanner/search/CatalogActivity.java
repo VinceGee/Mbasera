@@ -47,7 +47,7 @@ public class CatalogActivity extends Activity {
                 Intent productDetailsIntent = new Intent(getBaseContext(), SearchDetailsActivity.class);
                 productDetailsIntent.putExtra(ShoppingCartHelper.PRODUCT_INDEX, position);
                 startActivity(productDetailsIntent);
-
+                finish();
             }
         });
 
@@ -58,6 +58,7 @@ public class CatalogActivity extends Activity {
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), CartActivity.class);
                 startActivity(intent);
+                finish();
             }
         });
 

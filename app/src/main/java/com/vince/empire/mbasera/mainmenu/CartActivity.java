@@ -2,7 +2,9 @@ package com.vince.empire.mbasera.mainmenu;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -144,30 +146,11 @@ public class CartActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                new SweetAlertDialog(CartActivity.this, SweetAlertDialog.WARNING_TYPE)
-                        .setCustomImage(R.mipmap.ic_launcher)
-                        .setTitleText("Mbasera")
-                        .setContentText("Submit Order?")
-                        .setCancelText("No,wait!")
-                        .setConfirmText("Submit!")
-                        .showCancelButton(true)
-                        .setCancelClickListener(new SweetAlertDialog.OnSweetClickListener() {
-                            @Override
-                            public void onClick(SweetAlertDialog sDialog) {
-                                // reuse previous dialog instance, keep widget user state, reset them if you need
-                                sDialog.setTitleText("Mbasera")
-                                        .setContentText("Keep making orders")
-                                        .setConfirmText("OK")
-                                        .showCancelButton(false)
-                                        .setCancelClickListener(null)
-                                        .setConfirmClickListener(null)
-                                        .changeAlertType(SweetAlertDialog.ERROR_TYPE);
-
-                            }
-                        })
-                        .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
-                            @Override
-                            public void onClick(SweetAlertDialog sDialog) {
+                new AlertDialog.Builder(CartActivity.this)
+                        .setTitle("Submit Order")
+                        .setMessage("Are you sure you want to submit this order?")
+                        .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int which) {
                                 for(int i=0;i<mCartList.size();i++) {
                                     PayPalItem item = new PayPalItem(mCartList.get(i).getName(), mCartList.get(i).getQuantity(),
                                             mCartList.get(i).getPrice(), AppConfig.DEFAULT_CURRENCY, mCartList.get(i).getSku());
@@ -176,13 +159,46 @@ public class CartActivity extends AppCompatActivity {
                                 }
 
                                 launchPayPalPayment();
-                                sDialog.dismiss();
                             }
-
-
                         })
+                        .setNegativeButton(android.R.string.no, new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int which) {
+                                // do nothing
+                            }
+                        })
+                        .setIcon(android.R.drawable.ic_dialog_alert)
+                        .show();
 
-                       .show();
+                /*AlertDialog.Builder builder1 = new AlertDialog.Builder(context);
+                builder1.setMessage("Are you sure you want to submit this order?");
+                builder1.setCancelable(true);
+
+                builder1.setPositiveButton(
+                        "Yes",
+                        new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                for(int i=0;i<mCartList.size();i++) {
+                                    PayPalItem item = new PayPalItem(mCartList.get(i).getName(), mCartList.get(i).getQuantity(),
+                                            mCartList.get(i).getPrice(), AppConfig.DEFAULT_CURRENCY, mCartList.get(i).getSku());
+
+                                    productsInCart.add(item);
+                                }
+
+                                launchPayPalPayment();
+                            }
+                        });
+
+                builder1.setNegativeButton(
+                        "No",
+                        new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                dialog.cancel();
+                            }
+                        });
+
+                AlertDialog alert11 = builder1.create();
+                alert11.show();*/
+
             }
 
         });
