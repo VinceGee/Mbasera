@@ -260,8 +260,12 @@ public class ProductFragment extends Fragment implements
             @Override
             public void onClick(View v) {
 
-                PayPalItem item = new PayPalItem(product.getName(), itemQuantity,
-                        product.getPrice(), AppConfig.DEFAULT_CURRENCY, product.getSku());
+                PayPalItem item = new PayPalItem(
+                        product.getName(),
+                        itemQuantity,
+                        product.getPrice(),
+                        AppConfig.DEFAULT_CURRENCY,
+                        product.getSku());
 
                 productsInCart.add(item);
                 ((BaseAdapter) CartFragment.mListView.getAdapter()).notifyDataSetChanged();

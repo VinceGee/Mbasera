@@ -209,7 +209,10 @@ public boolean onOptionsItemSelected(MenuItem item) {
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
         return true;
+        } else if (id == R.id.logout){
+                logoutUser();
         }
+
 
         return super.onOptionsItemSelected(item);
         }
@@ -234,6 +237,8 @@ public boolean onNavigationItemSelected(MenuItem item) {
 
         }  else if (id == R.id.nav_abt_mbasera) {
 
+        } else if (id == R.id.nav_logout){
+                logoutUser();
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

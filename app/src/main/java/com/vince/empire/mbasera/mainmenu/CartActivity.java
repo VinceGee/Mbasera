@@ -61,8 +61,7 @@ public class CartActivity extends AppCompatActivity {
 
     // PayPal configuration
     private static PayPalConfiguration paypalConfig = new PayPalConfiguration()
-            .environment(AppConfig.PAYPAL_ENVIRONMENT).clientId(
-                    AppConfig.PAYPAL_CLIENT_ID);
+            .environment(AppConfig.PAYPAL_ENVIRONMENT).clientId(AppConfig.PAYPAL_CLIENT_ID);
 
     private int i = -1;
     private ProgressDialog pDialog;
@@ -79,7 +78,6 @@ public class CartActivity extends AppCompatActivity {
         mCheckOut = (Button) findViewById(R.id.checkOutButton);
         mContinueShopping = (Button) findViewById(R.id.continueShopping);
 
-
         mCartList = AppConfig.productsInCart;
         Log.e("Check this size", "" + mCartList.size());
 
@@ -88,8 +86,6 @@ public class CartActivity extends AppCompatActivity {
             mCartList.get(i).selected = false;
         }
 
-
-
         pDialog = new ProgressDialog(this);
         pDialog.setCancelable(false);
 
@@ -97,7 +93,6 @@ public class CartActivity extends AppCompatActivity {
         Intent intent = new Intent(this, PayPalService.class);
         intent.putExtra(PayPalService.EXTRA_PAYPAL_CONFIGURATION, paypalConfig);
         startService(intent);
-
 
         // Create the list
         mListViewCatalog = (ListView) findViewById(R.id.listViewCatalog);
@@ -146,14 +141,26 @@ public class CartActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
+                // Check for empty cart
+                /*if (AppConfig.productsInCart.size() > 0) {
+                    launchPayPalPayment();
+                } else {
+                    Toast.makeText(getApplicationContext(), "Cart is empty! Please add few products to cart.",
+                            Toast.LENGTH_SHORT).show();
+                }*/
+
                 new AlertDialog.Builder(CartActivity.this)
                         .setTitle("Submit Order")
                         .setMessage("Are you sure you want to submit this order?")
                         .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int which) {
                                 for(int i=0;i<mCartList.size();i++) {
-                                    PayPalItem item = new PayPalItem(mCartList.get(i).getName(), mCartList.get(i).getQuantity(),
-                                            mCartList.get(i).getPrice(), AppConfig.DEFAULT_CURRENCY, mCartList.get(i).getSku());
+                                    PayPalItem item = new PayPalItem(
+                                            mCartList.get(i).getName(),
+                                            mCartList.get(i).getQuantity(),
+                                            mCartList.get(i).getPrice(),
+                                            AppConfig.DEFAULT_CURRENCY,
+                                            mCartList.get(i).getSku());
 
                                     productsInCart.add(item);
                                 }
@@ -166,38 +173,8 @@ public class CartActivity extends AppCompatActivity {
                                 // do nothing
                             }
                         })
-                        .setIcon(android.R.drawable.ic_dialog_alert)
+                        .setIcon(R.mipmap.ic_launcher)
                         .show();
-
-                /*AlertDialog.Builder builder1 = new AlertDialog.Builder(context);
-                builder1.setMessage("Are you sure you want to submit this order?");
-                builder1.setCancelable(true);
-
-                builder1.setPositiveButton(
-                        "Yes",
-                        new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int id) {
-                                for(int i=0;i<mCartList.size();i++) {
-                                    PayPalItem item = new PayPalItem(mCartList.get(i).getName(), mCartList.get(i).getQuantity(),
-                                            mCartList.get(i).getPrice(), AppConfig.DEFAULT_CURRENCY, mCartList.get(i).getSku());
-
-                                    productsInCart.add(item);
-                                }
-
-                                launchPayPalPayment();
-                            }
-                        });
-
-                builder1.setNegativeButton(
-                        "No",
-                        new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int id) {
-                                dialog.cancel();
-                            }
-                        });
-
-                AlertDialog alert11 = builder1.create();
-                alert11.show();*/
 
             }
 
