@@ -395,8 +395,13 @@ public class FullScannerFragment extends Fragment implements MessageDialogFragme
                     if(productsList.size()>0) {
                         for (int i = 0; i < productsList.size(); i++) {
 
-                            AppConfig.catalogueProductsInCart.add(new Product(productsList.get(i).getId(), productsList.get(i).getName(), productsList.get(i).getDescription(), productsList.get(i).getImage(),
-                                    productsList.get(i).getPrice(), productsList.get(i).getSku(), productsList.get(i).getBcode()));
+                            AppConfig.catalogueProductsInCart.add(new Product(productsList.get(i).getId(),
+                                    productsList.get(i).getName(),
+                                    productsList.get(i).getDescription(),
+                                    productsList.get(i).getImage(),
+                                    productsList.get(i).getPrice(),
+                                    productsList.get(i).getSku(),
+                                    productsList.get(i).getBcode()));
                            /* addProductCatalog(productsList.get(i).getId(), productsList.get(i).getName(), productsList.get(i).getDescription(), productsList.get(i).getImage(),
                                     productsList.get(i).getPrice(), productsList.get(i).getSku());*/
                         }

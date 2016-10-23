@@ -61,8 +61,7 @@ public class ProductListAdapter extends BaseAdapter {
             imageLoader = AppController.getInstance().getImageLoader();
 
         TextView name = (TextView) convertView.findViewById(R.id.productName);
-        TextView description = (TextView) convertView
-                .findViewById(R.id.productDescription);
+        TextView description = (TextView) convertView.findViewById(R.id.productDescription);
         TextView price = (TextView) convertView.findViewById(R.id.productPrice);
 
         NetworkImageView image = (NetworkImageView) convertView

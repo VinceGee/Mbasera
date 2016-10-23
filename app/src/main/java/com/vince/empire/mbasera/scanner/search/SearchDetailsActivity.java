@@ -143,9 +143,14 @@ public class SearchDetailsActivity extends Activity {
                 AppConfig.CARTITEMSQUANTITY = mTotalQuantity;
 
                 //add products to cart
-                Product productInCrt = new Product(selectedProduct.getId(), selectedProduct.getName(), selectedProduct.getDescription()
-                        , selectedProduct.getImage(), selectedProduct.getPrice(), selectedProduct.getSku(),selectedProduct.getBcode(),mTotalQuantity);
-
+                Product productInCrt = new Product(selectedProduct.getId(),
+                        selectedProduct.getName(),
+                        selectedProduct.getDescription(),
+                        selectedProduct.getImage(),
+                        selectedProduct.getPrice(),
+                        selectedProduct.getSku(),
+                        selectedProduct.getBcode(),
+                        mTotalQuantity);
 
                 for (int i = 0; i < AppConfig.productsInCart.size(); i++) {
                     //ShoppingCartHelper.removeProduct(selectedProduct);
@@ -154,15 +159,18 @@ public class SearchDetailsActivity extends Activity {
                         AppConfig.productsInCart.remove(i);
                         // ProductAdapter.getProductList().add(productInCrt);
                     }
-
-
-
                 }
 
                 AppConfig.CARTITEMSPRICE += productInCrt.getPrice().doubleValue()*mTotalQuantity;
                 AppConfig.productsInCart.add(productInCrt);
 //             ((BaseAdapter) CartActivity.mListViewCatalog.getAdapter()).notifyDataSetChanged();
                 Log.e("SHOW product size", AppConfig.productsInCart.size() + "");
+                Log.e("NNNNNNNNNNN", selectedProduct.getName());
+                Log.e("QQQQQQQQQQQ", String.valueOf(itemQuantity));
+                Log.e("PPPPPPPPPPP", String.valueOf(selectedProduct.getPrice()));
+                Log.e("EEEEEEEEEEEE", AppConfig.DEFAULT_CURRENCY);
+                Log.e("SSSSSSSSSSSS", selectedProduct.getSku());
+                Log.e("WWWWWWWWWWWWWWW", AppConfig.productsInCart.toString());
                 Toast.makeText(getApplication(), "Product added to CART", Toast.LENGTH_SHORT).show();
                 //  MainActivity main = new MainActivity();
                 Intent intent = new Intent(v.getContext(), CartActivity.class);

@@ -268,10 +268,10 @@ public class ProductFragment extends Fragment implements
                         product.getSku());
 
                 productsInCart.add(item);
+
                 ((BaseAdapter) CartFragment.mListView.getAdapter()).notifyDataSetChanged();
 
-                Toast.makeText(getActivity(),
-                        item.getName() + " added to cart!", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getActivity(),item.getName() + " added to cart!", Toast.LENGTH_SHORT).show();
                 dialog.dismiss();
             }
         });

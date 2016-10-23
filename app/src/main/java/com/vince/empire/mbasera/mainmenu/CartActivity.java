@@ -209,7 +209,6 @@ public class CartActivity extends AppCompatActivity {
         PayPalItem[] items = new PayPalItem[ProductFragment.productsInCart.size()];
         items = ProductFragment.productsInCart.toArray(items);
 
-
         // Total amount
         BigDecimal subtotal = PayPalItem.getItemTotal(items);
 
@@ -234,7 +233,11 @@ public class CartActivity extends AppCompatActivity {
 
         // Custom field like invoice_number etc.,
         payment.custom("This is text that will be associated with the payment that the app can use.");
-
+        Log.e("IIIIIIIIIIII",ProductFragment.productsInCart.toString()); //NULL
+        Log.e("SSSSSSSSSSSS",subtotal.toString()); //NULL
+        Log.e("EEEEEEEEEEEE", amount.toString());
+        Log.e("EEEEEEEEEEEE", AppConfig.DEFAULT_CURRENCY);
+        Log.e("EEEEEEEEEEEE", AppConfig.PAYMENT_INTENT);
         return payment;
     }
 

@@ -12,6 +12,8 @@ import com.vince.empire.mbasera.AppConfig;
 import com.vince.empire.mbasera.R;
 import com.vince.empire.mbasera.mainmenu.CartActivity;
 
+import java.util.Locale;
+
 
 public class FullScannerActivity extends AppCompatActivity {
 
@@ -52,7 +54,8 @@ public class FullScannerActivity extends AppCompatActivity {
     }
     public static double round(double value) {
         String str = String.format("%1.2f", value);
-      //  d = Double.valueOf(str);
+        //String str = String.format("Locale.US", value);
+        //d = Double.valueOf(str);
         return  Double.valueOf(str);
     }
 

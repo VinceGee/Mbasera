@@ -1,6 +1,7 @@
 package com.vince.empire.mbasera;
 
 import com.paypal.android.sdk.payments.PayPalConfiguration;
+import com.paypal.android.sdk.payments.PayPalItem;
 import com.paypal.android.sdk.payments.PayPalPayment;
 import com.vince.empire.mbasera.database.helper.Product;
 import com.vince.empire.mbasera.navhistory.adapter.model.Order;
@@ -13,7 +14,7 @@ import java.util.List;
  */
 public class AppConfig {
 
-    public static final String BASE_URL = "http://192.168.100.2/mbasera";
+    public static final String BASE_URL = "http://192.168.100.7/mbasera";
     // Server user login url
     public static String URL_LOGIN = BASE_URL + "/login.php";
 
@@ -39,5 +40,6 @@ public class AppConfig {
    public static List<Product> catalogueProductsInCart = new ArrayList<Product>();
     public static ArrayList<Order> productsOrderList = new ArrayList<>();
     //product for items in cart
+    //public static List<PayPalItem> productsInCart = new ArrayList<PayPalItem>();
     public static List<Product> productsInCart = new ArrayList<Product>();
 }
