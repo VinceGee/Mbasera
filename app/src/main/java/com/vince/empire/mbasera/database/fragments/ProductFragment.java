@@ -55,8 +55,6 @@ public class ProductFragment extends Fragment implements
     // To store the products those are added to cart
     public static List<PayPalItem> productsInCart = new ArrayList<PayPalItem>();
 
-    /*@Bind(R.id.checkout_fragment_item_details_text_view_item_quantity)
-    TextView mTextViewItemQuantity;*/
     ImageLoader imageLoader = AppController.getInstance().getImageLoader();
     // TODO: Rename and change types of parameters
     private String mParam1;
@@ -68,8 +66,7 @@ public class ProductFragment extends Fragment implements
     private ProductListAdapter adapter;
     // Progress dialog
     private ProgressDialog pDialog;
-    /* @Bind(R.id.checkout_fragment_item_details_image_view)
-     ImageView mImageView;*/
+
     private OnFragmentInteractionListener mListener;
     private int itemQuantity = 1;
 
@@ -117,7 +114,6 @@ public class ProductFragment extends Fragment implements
         adapter = new ProductListAdapter(getActivity(), productsList, this);
 
         listView.setAdapter(adapter);
-
 
         // Fetching products from server
         fetchProducts();
@@ -204,8 +200,6 @@ public class ProductFragment extends Fragment implements
 
     @Override
     public void onAddToCartPressed(final Product product) {
-
-
         // custom dialog
         final Dialog dialog = new Dialog(getActivity());
         dialog.setContentView(R.layout.checkout_fragment_item_details);
@@ -219,15 +213,12 @@ public class ProductFragment extends Fragment implements
         TextView tvItemName = (TextView) dialog.findViewById(R.id.checkout_fragment_item_details_text_view_item_name);
         TextView tvDesc = (TextView) dialog.findViewById(R.id.checkout_fragment_item_details_text_view_item_description);
         TextView tvItemPrice = (TextView) dialog.findViewById(R.id.checkout_fragment_item_details_text_view_item_price);
-        // TextView tvItemPrice = (TextView) dialog.findViewById(R.id.checkout_fragment_item_details_text_view_item_price);
 
-        // text.setText("Android custom dialog example!");
         tvItemName.setText(product.getName());
         tvDesc.setText(product.getDescription());
         tvItemPrice.setText("Price: $" + product.getPrice());
 
-        NetworkImageView image = (NetworkImageView) dialog
-                .findViewById(R.id.checkout_fragment_item_details_image_view);
+        NetworkImageView image = (NetworkImageView) dialog.findViewById(R.id.checkout_fragment_item_details_image_view);
 
         //NetworkImageView mImage = new NetworkImageView(getActivity());
         image.setImageUrl(product.getImage(), imageLoader);
@@ -277,8 +268,6 @@ public class ProductFragment extends Fragment implements
         });
 
         dialog.show();
-
-
     }
 
 

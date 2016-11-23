@@ -155,6 +155,13 @@ public class CartActivity extends AppCompatActivity {
                         .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int which) {
                                 for(int i=0;i<mCartList.size();i++) {
+                                    Log.e("Name",mCartList.get(i).getName());
+                                    Log.e("Quantity",mCartList.get(i).getQuantity()+"");
+                                    Log.e("Price",mCartList.get(i).getPrice()+"");
+                                    Log.e("Currency",AppConfig.DEFAULT_CURRENCY);
+                                    Log.e("Sku",mCartList.get(i).getSku());
+                                    Log.e("Object",productsInCart+"");
+
                                     PayPalItem item = new PayPalItem(
                                             mCartList.get(i).getName(),
                                             mCartList.get(i).getQuantity(),
@@ -206,8 +213,8 @@ public class CartActivity extends AppCompatActivity {
      */
     private PayPalPayment prepareFinalCart() {
 
-        PayPalItem[] items = new PayPalItem[ProductFragment.productsInCart.size()];
-        items = ProductFragment.productsInCart.toArray(items);
+        PayPalItem[] items = new PayPalItem[productsInCart.size()];
+        items = productsInCart.toArray(items);
 
         // Total amount
         BigDecimal subtotal = PayPalItem.getItemTotal(items);
@@ -233,11 +240,7 @@ public class CartActivity extends AppCompatActivity {
 
         // Custom field like invoice_number etc.,
         payment.custom("This is text that will be associated with the payment that the app can use.");
-        Log.e("IIIIIIIIIIII",ProductFragment.productsInCart.toString()); //NULL
-        Log.e("SSSSSSSSSSSS",subtotal.toString()); //NULL
-        Log.e("EEEEEEEEEEEE", amount.toString());
-        Log.e("EEEEEEEEEEEE", AppConfig.DEFAULT_CURRENCY);
-        Log.e("EEEEEEEEEEEE", AppConfig.PAYMENT_INTENT);
+
         return payment;
     }
 
@@ -249,7 +252,7 @@ public class CartActivity extends AppCompatActivity {
 
         PayPalPayment thingsToBuy = prepareFinalCart();
 
-        Intent intent = new Intent(CartActivity.this, PaymentActivity.class);
+        Intent intent = new Intent(getApplicationContext(), PaymentActivity.class);
 
         intent.putExtra(PayPalService.EXTRA_PAYPAL_CONFIGURATION, paypalConfig);
 
@@ -320,7 +323,6 @@ public class CartActivity extends AppCompatActivity {
                     String message = res.getString("message");
 
                     // user error boolean flag to check for errors
-
                     Toast.makeText(getApplicationContext(), message,
                             Toast.LENGTH_SHORT).show();
 
@@ -361,7 +363,7 @@ public class CartActivity extends AppCompatActivity {
         };
 
         // Setting timeout to volley request as verification request takes sometime
-        int socketTimeout = 60000;
+        int socketTimeout = 600000;
         RetryPolicy policy = new DefaultRetryPolicy(socketTimeout,
                 DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
                 DefaultRetryPolicy.DEFAULT_BACKOFF_MULT);
