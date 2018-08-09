@@ -175,13 +175,8 @@ public class MenuSearchActivity extends AppCompatActivity {
                         String image = c.getString(TAG_IMAGE);
                         BigDecimal price = new BigDecimal(c.getString(TAG_PRICE));
                         String sku = c.getString(TAG_SKU);
-
-
-
                         //adding to list
                         productsList.add(new Product(id, name, desc, image, price, sku,barcode));
-
-
                     }
                 } else {
                     // no idioms found
@@ -218,8 +213,13 @@ public class MenuSearchActivity extends AppCompatActivity {
                     if(productsList.size()>0) {
                         for (int i = 0; i < productsList.size(); i++) {
 
-                            AppConfig.catalogueProductsInCart.add(new Product(productsList.get(i).getId(), productsList.get(i).getName(), productsList.get(i).getDescription(), productsList.get(i).getImage(),
-                                    productsList.get(i).getPrice(), productsList.get(i).getSku(), productsList.get(i).getBcode()));
+                            AppConfig.catalogueProductsInCart.add(new Product(productsList.get(i).getId(),
+                                    productsList.get(i).getName(),
+                                    productsList.get(i).getDescription(),
+                                    productsList.get(i).getImage(),
+                                    productsList.get(i).getPrice(),
+                                    productsList.get(i).getSku(),
+                                    productsList.get(i).getBcode()));
                            /* addProductCatalog(productsList.get(i).getId(), productsList.get(i).getName(), productsList.get(i).getDescription(), productsList.get(i).getImage(),
                                     productsList.get(i).getPrice(), productsList.get(i).getSku());*/
                         }

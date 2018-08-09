@@ -14,7 +14,7 @@ import java.util.List;
  */
 public class AppConfig {
 
-    public static final String BASE_URL = "http://192.168.0.3/mbasera";
+    public static final String BASE_URL = "http://192.168.100.13/mbasera";
     // Server user login url
     public static String URL_LOGIN = BASE_URL + "/login.php";
 
